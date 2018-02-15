@@ -113,6 +113,11 @@ func Words(word, c, t, gen string) (newWord string, err error) {
 	arr := []string{}
 
 	for _, w := range strings.Split(word, " ") {
+		if utf8.RuneCountInString(w) <= 3 {
+			arr = append(arr, w)
+			continue
+		}
+
 		// Определяем пол
 		if gen == "" {
 			gen = GetGender(w, t)
